@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyB77OmEPi-w8omKiqUCu4eMfEyNatq7D00',
+    authDomain: 'webresumegenerator-5058c.firebaseapp.com',
+    databaseURL: 'https://webresumegenerator-5058c.firebaseio.com',
+    projectId: 'webresumegenerator-5058c',
+    storageBucket: 'webresumegenerator-5058c.appspot.com',
+    messagingSenderId: '504253096081',
+    appId: '1:504253096081:web:140a7b7cc1c9d8664fdf30'
+  }
 };
 
 /*
