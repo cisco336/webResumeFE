@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "webresumegenerator-5058c": {
+      "hosting": {
+        "webResumeFE": [
+          "webresumegenerator-5058c"
+        ]
+      }
+    }
+  }
+}
