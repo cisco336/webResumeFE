@@ -1,6 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -9,7 +14,7 @@ import { MatIcon } from '@angular/material/icon';
   encapsulation: ViewEncapsulation.None
 })
 export class ButtonComponent implements OnInit {
-  @Input() icon: string;
+  @Input() color: 'primary' | 'accent' | 'warn';
   @Input() disabled: boolean;
   @Output() emit = new EventEmitter<any>();
 
