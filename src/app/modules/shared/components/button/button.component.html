@@ -1,0 +1,8 @@
+<button mat-raised-button color="primary">
+    <mat-icon *ngIf="icon">
+      {{ icon }}
+    </mat-icon>
+    <span>
+      <ng-content></ng-content>
+    </span>
+</button>

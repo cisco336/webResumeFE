@@ -1,0 +1,18 @@
+// azul: #69a5eb
+// verde: ##5EC2BE
+
+button {
+  padding: 0 !important;
+  & .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    & .mat-icon {
+      padding: 0 10px;
+      & + span {
+        padding-right: 10px;
+      }
+    }
+  }
+}
