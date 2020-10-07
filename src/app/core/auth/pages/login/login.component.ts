@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   lookPasswd = 'password';
 
+  isStrong = false;
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -35,6 +37,8 @@ export class LoginComponent implements OnInit {
     this.checkCurrentUser();
 
     this.authenticationForm = this.fb.group({});
+
+    this.trackChanges();
   }
 
   checkCurrentUser(): void {
@@ -55,11 +59,18 @@ export class LoginComponent implements OnInit {
     this.auth.register();
   }
 
-  addControls(control: FormControl, name: 'string'): void {
+  addControls(control: FormControl, name: string): void {
     addControltoFormGroup(this.authenticationForm, control, name);
     const validators = [Validators.required];
     if (name === 'email') {
       validators.push(Validators.email);
+    }
+    if (
+      name === 'firstName' ||
+      name === 'lastName' ||
+      name === 'passwdConfirm'
+    ) {
+      this.authenticationForm.controls[name].disable();
     }
     this.authenticationForm.controls[name].setValidators([...validators]);
   }
@@ -70,6 +81,7 @@ export class LoginComponent implements OnInit {
 
     this.isRegistering = checked;
     this.authenticationForm.updateValueAndValidity();
+    this.disableControls(checked);
   }
 
   lookPassword() {
@@ -78,5 +90,24 @@ export class LoginComponent implements OnInit {
 
   submitForm() {
     console.log(this.authenticationForm.value);
+  }
+
+  disableControls(check) {
+    const form = this.authenticationForm.controls;
+    if (check) {
+      form.firstName.enable();
+      form.lastName.enable();
+      form.passwdConfirm.enable();
+      return;
+    }
+    form.firstName.disable();
+    form.lastName.disable();
+    form.passwdConfirm.disable();
+  }
+
+  trackChanges() {
+    this.authenticationForm.valueChanges.subscribe(changes => {
+      // console.log(this.authenticationForm.controls);
+    });
   }
 }

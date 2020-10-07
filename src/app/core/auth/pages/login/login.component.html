@@ -2,7 +2,7 @@
   <mat-toolbar class="login__card--toolbar" color="primary">
     {{ title }}
     <mat-slide-toggle
-      [labelPosition]="right"
+      labelPosition="right"
       (change)="changeTitle($event.checked)"
     >
       <small>
@@ -14,7 +14,7 @@
   <mat-card-content class="login__card--content">
     <!-- Name -->
     <app-input
-      *ngIf="isRegistering"
+      [hidden]="!isRegistering"
       [label]="'Name'"
       [color]="'primary'"
       [icon]="true"
@@ -25,7 +25,7 @@
 
     <!-- Last name -->
     <app-input
-      *ngIf="isRegistering"
+      [hidden]="!isRegistering"
       [label]="'Last name'"
       [color]="'primary'"
       [icon]="true"
@@ -60,7 +60,7 @@
 
     <!-- Confirm passwd -->
     <app-input
-      *ngIf="isRegistering"
+      [hidden]="!isRegistering"
       [label]="'Confirm password'"
       [color]="'primary'"
       [type]="'password'"
@@ -69,6 +69,15 @@
     >
       <i class="icon-verified"></i>
     </app-input>
+
+    <!-- PasswordStrength -->
+    <app-password-strength 
+    *ngIf="isRegistering"
+    [passwd]="authenticationForm?.controls?.passwd?.value"
+    [confirm]="authenticationForm?.controls?.passwdConfirm?.value"
+    (isStrong)="isStrong = $event"
+    ></app-password-strength>
+
     <app-button [color]="'primary'" [disabled]="authenticationForm.invalid" (emit)="submitForm()">
       {{ title }}
     </app-button>
