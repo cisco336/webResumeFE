@@ -1,0 +1,11 @@
+::ng-deep {
+    & .mat-form-field-suffix {
+        top: 1px !important;
+        & .pointer {
+            cursor: pointer;
+            &.light-color {
+                color: rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline" [color]="color">
+  <mat-label>
+    {{ label }}
+  </mat-label>
+  <input matInput [type]="type" [formControl]="control" />
+  <mat-icon
+    *ngIf="icon"
+    matSuffix
+    (click)="iconClicked()"
+    [ngClass]="{ 'pointer': iconClick, 'light-color': lightColor }"
+  >
+    <ng-content></ng-content>
+  </mat-icon>
+  <mat-error *ngIf="control.errors?.required">Required field</mat-error>
+  <mat-error *ngIf="control.errors?.email">Please write a valid email</mat-error>
+  <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+</mat-form-field>

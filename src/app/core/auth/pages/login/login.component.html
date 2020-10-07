@@ -1,12 +1,76 @@
-<p>login works!</p>
-<div>
-    <form>
+<mat-card class="login__card mat-elevation-z5" [formGroup]="authenticationForm">
+  <mat-toolbar class="login__card--toolbar" color="primary">
+    {{ title }}
+    <mat-slide-toggle
+      [labelPosition]="right"
+      (change)="changeTitle($event.checked)"
+    >
+      <small>
+        {{ option }}
+      </small>
+    </mat-slide-toggle>
+  </mat-toolbar>
 
-        <app-button [icon]="'home'">
-            <ng-template #icon>
-                home
-            </ng-template>
-            Button
-        </app-button>
-    </form>
-</div>
+  <mat-card-content class="login__card--content">
+    <!-- Name -->
+    <app-input
+      *ngIf="isRegistering"
+      [label]="'Name'"
+      [color]="'primary'"
+      [icon]="true"
+      (formControl)="addControls($event, 'firstName')"
+    >
+      <i class="icon-account_box"></i>
+    </app-input>
+
+    <!-- Last name -->
+    <app-input
+      *ngIf="isRegistering"
+      [label]="'Last name'"
+      [color]="'primary'"
+      [icon]="true"
+      (formControl)="addControls($event, 'lastName')"
+    >
+      <i class="icon-account_box"></i>
+    </app-input>
+
+    <!-- email -->
+    <app-input
+      [label]="'Email'"
+      [color]="'primary'"
+      [hint]="'example@mail.com'"
+      [icon]="true"
+      (formControl)="addControls($event, 'email')"
+    >
+    <i class="icon-mail_outline"></i>
+    </app-input>
+
+    <!-- Passwd -->
+    <app-input
+      [label]="'Password'"
+      [color]="'primary'"
+      [type]="lookPasswd"
+      [icon]="true"
+      [iconClick]="true"
+      (formControl)="addControls($event, 'passwd')"
+      (clicked)="lookPassword()"
+    >
+      <i class="icon-remove_red_eye"></i>
+    </app-input>
+
+    <!-- Confirm passwd -->
+    <app-input
+      *ngIf="isRegistering"
+      [label]="'Confirm password'"
+      [color]="'primary'"
+      [type]="'password'"
+      [icon]="true"
+      (formControl)="addControls($event, 'passwdConfirm')"
+    >
+      <i class="icon-verified"></i>
+    </app-input>
+    <app-button [color]="'primary'" [disabled]="authenticationForm.invalid" (emit)="submitForm()">
+      {{ title }}
+    </app-button>
+  </mat-card-content>
+</mat-card>
