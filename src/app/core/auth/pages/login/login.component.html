@@ -1,84 +1,50 @@
 <mat-card class="login__card mat-elevation-z5" [formGroup]="authenticationForm">
   <mat-toolbar class="login__card--toolbar" color="primary">
     {{ title }}
-    <mat-slide-toggle
-      labelPosition="right"
-      (change)="changeTitle($event.checked)"
-    >
+    <mat-slide-toggle labelPosition="right" (change)="changeTitle($event.checked)">
       <small>
         {{ option }}
       </small>
     </mat-slide-toggle>
   </mat-toolbar>
 
-  <mat-card-content class="login__card--content">
+  <mat-card-content class="login__card--content" [ngClass]="{register: isRegistering}">
     <!-- Name -->
-    <app-input
-      [hidden]="!isRegistering"
-      [label]="'Name'"
-      [color]="'primary'"
-      [icon]="true"
-      (formControl)="addControls($event, 'firstName')"
-    >
+    <app-input class="input" [hidden]="!isRegistering" [label]="'Name'" [color]="'primary'" [icon]="true"
+      (formControl)="addControls($event, 'firstName')">
       <i class="icon-account_box"></i>
     </app-input>
 
     <!-- Last name -->
-    <app-input
-      [hidden]="!isRegistering"
-      [label]="'Last name'"
-      [color]="'primary'"
-      [icon]="true"
-      (formControl)="addControls($event, 'lastName')"
-    >
+    <app-input class="input" [hidden]="!isRegistering" [label]="'Last name'" [color]="'primary'" [icon]="true"
+      (formControl)="addControls($event, 'lastName')">
       <i class="icon-account_box"></i>
     </app-input>
 
     <!-- email -->
-    <app-input
-      [label]="'Email'"
-      [color]="'primary'"
-      [hint]="'example@mail.com'"
-      [icon]="true"
-      (formControl)="addControls($event, 'email')"
-    >
-    <i class="icon-mail_outline"></i>
+    <app-input class="input" [label]="'Email'" [color]="'primary'" [hint]="'example@mail.com'" [icon]="true"
+      (formControl)="addControls($event, 'email')">
+      <i class="icon-mail_outline"></i>
     </app-input>
 
     <!-- Passwd -->
-    <app-input
-      [label]="'Password'"
-      [color]="'primary'"
-      [type]="lookPasswd"
-      [icon]="true"
-      [iconClick]="true"
-      (formControl)="addControls($event, 'passwd')"
-      (clicked)="lookPassword()"
-    >
+    <app-input class="input" [label]="'Password'" [color]="'primary'" [type]="lookPasswd" [icon]="true" [iconClick]="true"
+      (formControl)="addControls($event, 'passwd')" (clicked)="lookPassword()">
       <i class="icon-remove_red_eye"></i>
     </app-input>
 
     <!-- Confirm passwd -->
-    <app-input
-      [hidden]="!isRegistering"
-      [label]="'Confirm password'"
-      [color]="'primary'"
-      [type]="'password'"
-      [icon]="true"
-      (formControl)="addControls($event, 'passwdConfirm')"
-    >
+    <app-input class="input" [hidden]="!isRegistering" [label]="'Confirm password'" [color]="'primary'" [type]="'password'"
+      [icon]="true" (formControl)="addControls($event, 'passwdConfirm')">
       <i class="icon-verified"></i>
     </app-input>
 
     <!-- PasswordStrength -->
-    <app-password-strength 
-    *ngIf="isRegistering"
-    [passwd]="authenticationForm?.controls?.passwd?.value"
-    [confirm]="authenticationForm?.controls?.passwdConfirm?.value"
-    (isStrong)="isStrong = $event"
-    ></app-password-strength>
+    <app-password-strength class="strength" *ngIf="isRegistering" [passwd]="authenticationForm?.controls?.passwd?.value"
+      [confirm]="authenticationForm?.controls?.passwdConfirm?.value" (isStrong)="isStrong = $event">
+    </app-password-strength>
 
-    <app-button [color]="'primary'" [disabled]="authenticationForm.invalid" (emit)="submitForm()">
+    <app-button class="button" [color]="'primary'" [disabled]="authenticationForm.invalid" (emit)="submitForm()">
       {{ title }}
     </app-button>
   </mat-card-content>
