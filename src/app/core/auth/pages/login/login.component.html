@@ -44,7 +44,7 @@
       [confirm]="authenticationForm?.controls?.passwdConfirm?.value" (isStrong)="isStrong = $event">
     </app-password-strength>
 
-    <app-button class="button" [color]="'primary'" [disabled]="authenticationForm.invalid" (emit)="submitForm()">
+    <app-button class="button" [color]="'primary'" [disabled]="authenticationForm.invalid && isStrong" (emit)="submitForm()">
       {{ title }}
     </app-button>
   </mat-card-content>

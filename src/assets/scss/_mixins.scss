@@ -1,1 +1,29 @@
 @use './variables';
+
+@mixin for-size($size, $pxs: 1200px) {
+  @if $size == phone-only {
+    @media (max-width: $phone-only) {
+      @content;
+    }
+  } @else if $size == tablet-portrait-up {
+    @media (min-width: $tablet-portrait) {
+      @content;
+    }
+  } @else if $size == tablet-landscape-up {
+    @media (min-width: $tablet-landscape) {
+      @content;
+    }
+  } @else if $size == desktop-up {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  } @else if $size == big-desktop-up {
+    @media (min-width: $big-desktop) {
+      @content;
+    }
+  } @else if $size == custom {
+    @media (max-width: $pxs) {
+      @content;
+    }
+  }
+}
