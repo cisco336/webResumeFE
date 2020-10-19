@@ -1,4 +1,4 @@
-<mat-card class="login__card mat-elevation-z10" [formGroup]="authenticationForm">
+<mat-card [@entrance]="isRegistering" class="login__card mat-elevation-z10" [formGroup]="authenticationForm">
   <mat-toolbar class="login__card--toolbar" color="primary">
     {{ title }}
     <mat-slide-toggle labelPosition="right" (change)="changeTitle($event.checked)">
@@ -28,14 +28,14 @@
     </app-input>
 
     <!-- Passwd -->
-    <app-input class="input" [label]="'Password'" [color]="'primary'" [type]="lookPasswd" [icon]="true" [iconClick]="true"
-      (formControl)="addControls($event, 'passwd')" (clicked)="lookPassword()">
+    <app-input class="input" [label]="'Password'" [color]="'primary'" [type]="lookPasswd" [icon]="true"
+      [iconClick]="true" (formControl)="addControls($event, 'passwd')" (clicked)="lookPassword()">
       <i class="icon-remove_red_eye"></i>
     </app-input>
 
     <!-- Confirm passwd -->
-    <app-input class="input" [hidden]="!isRegistering" [label]="'Confirm password'" [color]="'primary'" [type]="'password'"
-      [icon]="true" (formControl)="addControls($event, 'passwdConfirm')">
+    <app-input class="input" [hidden]="!isRegistering" [label]="'Confirm password'" [color]="'primary'"
+      [type]="'password'" [icon]="true" (formControl)="addControls($event, 'passwdConfirm')">
       <i class="icon-verified"></i>
     </app-input>
 
@@ -44,7 +44,8 @@
       [confirm]="authenticationForm?.controls?.passwdConfirm?.value" (isStrong)="isStrong = $event">
     </app-password-strength>
 
-    <app-button class="button" [color]="'primary'" [disabled]="authenticationForm.invalid && isStrong" (emit)="submitForm()">
+    <app-button class="button" [color]="'primary'" [disabled]="authenticationForm.invalid && isStrong"
+      (emit)="submitForm()">
       {{ title }}
     </app-button>
   </mat-card-content>

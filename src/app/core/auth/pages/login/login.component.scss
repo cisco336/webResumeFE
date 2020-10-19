@@ -11,7 +11,7 @@
   align-items: flex-start;
   justify-content: center;
   overflow: overlay;
-  background: linear-gradient(45deg, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+  background: $blue_gradient;
   & .login {
     &__card {
       z-index: 2;

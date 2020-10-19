@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { addControltoFormGroup } from '../../../../Utils/helpers';
+import { loginRegisterAnimation } from 'src/app/Utils/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [loginRegisterAnimation.animation],
 })
 export class LoginComponent implements OnInit {
   authenticationForm: FormGroup;
@@ -106,7 +108,7 @@ export class LoginComponent implements OnInit {
   }
 
   trackChanges() {
-    this.authenticationForm.valueChanges.subscribe(changes => {
+    this.authenticationForm.valueChanges.subscribe((changes) => {
       // console.log(this.authenticationForm.controls);
     });
   }
